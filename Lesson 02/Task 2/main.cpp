@@ -2,10 +2,12 @@
 #include <string>
 #include <iostream>
 
+using namespace std::string_literals;
+
 class VeryHeavyDatabase {
 public:
     std::string GetData(const std::string& key) const noexcept {
-        return "Very Big Data String: " + key;
+        return "Very Big Data String: "s + key;
     }
 };
 
@@ -32,7 +34,7 @@ class TestDB : VeryHeavyDatabase {
 public:
     explicit TestDB(VeryHeavyDatabase* real_object) : real_db_(real_object) {}
     std::string GetData(const std::string& key) noexcept {
-        return "test_data\n";
+        return "test_data\n"s;
     }
 private:
     VeryHeavyDatabase* real_db_;
@@ -43,7 +45,7 @@ public:
     explicit OneShotDB(VeryHeavyDatabase* real_object, size_t shots = 1) : real_db_(real_object), shots_(shots) {}
     std::string GetData(const std::string& key) noexcept {
         if (shots_ == 0)
-            return "error";
+            return "error"s;
         else {
             shots_--;
             return real_db_->GetData(key);
