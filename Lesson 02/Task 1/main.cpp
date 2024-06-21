@@ -9,6 +9,7 @@ public:
     virtual void render(const std::string& data) const {
         output_ << data;
     }
+protected:
     std::ostream& output_;
 };
 
